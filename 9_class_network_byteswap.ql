@@ -3,12 +3,15 @@ class NetworkByteSwap extends Expr{
     NetworkByteSwap(){
     // TODO: replace <class> and <var>
     // exists(<class> var1 | 
-    exists( MacroInvocation mi |  mi.getMacroName() in ["ntohs","ntohl","ntohll"])
+    exists( MacroInvocation mi |  
+        mi.getMacroName() in ["ntohs","ntohl","ntohll"] 
+        and this = mi.getExpr()
         // TODO: <condition>
-    }
+        )
+    }   
 }
 from NetworkByteSwap n
-select n
+select n, "Network byte swap"
 
 
 // from NetworkByteSwap n
